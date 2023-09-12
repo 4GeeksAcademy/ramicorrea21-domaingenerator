@@ -4,15 +4,18 @@ window.onload = function() {
   document.querySelector("#domain").innerHTML = domainGenerator();
 };
 const domainGenerator = () => {
-  let pronoun = ["the", "our", "your", "my"];
-  let adj = ["great", "big", "magic", "fancy"];
-  let noun = ["jogger", "racoon", "dog", "cat"];
-  let randomDomain = "";
-  for (let i = 0; i <= 4; i++) {
-    randomDomain =
-      pronoun[Math.floor(Math.random() * 3)] +
-      adj[Math.floor(Math.random() * 3)] +
-      noun[Math.floor(Math.random() * 3)];
+  let pronouns = ["the", "our", "your", "my"];
+  let adjs = ["great", "big", "magic", "fancy"];
+  let nouns = ["jogger", "racoon", "dog", "cat"];
+  let domains = [];
+
+  for(let pronoun of pronouns ){
+    for(let adj of adjs){
+      for(let noun of nouns){
+        domains.push(`${pronoun}${adj}${noun}`)
+      }
+    }
   }
-  return randomDomain + ".com";
+
+  return(`<ul>${domains.map(domain => `<li>${domain}.com</li>`).join(" ")}</ul>`);
 };
